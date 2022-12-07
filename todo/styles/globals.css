@@ -1,0 +1,213 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.main {
+  background-color: #dddcdc;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.title {
+  font-size: 100px;
+  font-weight: 50;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: rgba(175, 47, 47, 0.15);
+  margin: 0;
+}
+
+.add-task-field_container {
+  min-width: 550px;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+}
+
+.add-task-field_label {
+  align-self: center;
+}
+
+.add-field {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 30px;
+  color: black;
+  border: none
+}
+
+.add-field_checkbox--checked {
+  fill-opacity : 0.25
+}
+
+.add-field:focus {
+  outline: none;
+}
+
+.add-field::placeholder{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+  opacity: 0.4;
+  font-style: italic;
+}
+
+.task-list {
+  margin: 0;
+  padding: 0;
+  min-width: 500px;
+  max-width: 550px;
+}
+
+.task-item {
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  border: 0.1px solid rgb(211,211,211);
+  width: 549px;
+  min-height: 50px;
+  list-style-type: none;
+  text-align: left;
+  font-size: 24px;
+}
+
+.item_label {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  align-items: center;
+  margin-top: 10px ;
+}
+
+.item_checkbox {
+  display: none;
+}
+
+.item_box {
+  display: inline-block;
+  width:  25px;
+  height: 25px;
+  border: 0.5px solid gray;
+  border-radius: 50%;
+  margin-left: 7px;
+  position: relative;
+}
+
+.item_box::before {
+  content: '✓';
+  color: #08e8de;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.item_checkbox:checked + .item_box::before {
+  opacity: 1;
+}
+
+.item_text {
+  margin: 0;
+  color:  black;
+  padding-left: 7px;
+  width: 100%;
+}
+
+
+.item_checkbox:checked ~ .item_text {
+  color: gray;
+  text-decoration: line-through;
+}
+
+.controls-panel {
+  color: gray;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  min-width: 500px;
+  width: 550px;
+  min-height: 50px ;
+  border: 0.1px solid rgb(211,211,211);
+  font-size: 10px;
+}
+
+.buttons-container {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.count {
+  align-self: center;
+  margin-left: 7px;
+}
+
+.nav-item {
+  margin-left: 10px;
+  padding: 3px;
+}
+
+.nav-item--active {
+  outline: 1px solid rgba(175, 47, 47, 0.35);
+}
+
+.nav-item:hover {
+  outline: 1px solid rgba(175, 47, 47, 0.15);
+  border-radius: 5%;
+}
+
+.buttonWrapper {
+  font-family: 'Open Sans', sans-serif;
+  color: gray;
+  border: none;
+  background-color: white;
+  align-self: center;
+  margin-right: 7px;
+}
+
+.buttonWrapper button {
+  padding: 0;
+  font-size: 10px;
+}
+
+.buttonWrapper button:hover {
+  text-decoration: underline;
+}
+
+.nav-item a {
+  font-family: 'Open Sans', sans-serif;
+  color: gray;
+  border: none;
+  background-color: white;
+  text-decoration: none;
+}
+
+.clear-button {
+  font-family: 'Open Sans', sans-serif;
+  color: gray;
+  border: none;
+  background-color: white;
+  min-height: 30px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.clear-button:disabled {
+  opacity: 0;
+  cursor: default;
+}
+
+.active-button {
+  border: 1px solid gray;
+  border-radius: 20%;
+}
