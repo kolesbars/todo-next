@@ -1,7 +1,7 @@
-import Tasks from '../components/tasks/tasks';
+import TaskList from '../components/task-list/task-list';
 
 const Home = () => {
-  return <Tasks isCompleted={null} />;
+  return <TaskList isCompleted={null} />;
 };
 
 export default Home;

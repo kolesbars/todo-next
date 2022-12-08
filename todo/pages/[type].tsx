@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
-import Tasks from '../components/tasks/tasks';
+import TaskList from '../components/task-list/task-list';
 
 const SelectedTasks = () => {
   const router = useRouter();
 
   return (
-    <Tasks
+    <TaskList
       isCompleted={
         router.query.type && router.query.type === 'active' ? false : true
       }

@@ -1,17 +1,17 @@
 import { createAction } from '@reduxjs/toolkit';
-import { TaskItem } from '../types/common';
+import { TaskItemType } from '../types/common';
 import { ActionType } from '../types/action';
 
 export const addNewTask = createAction(
   ActionType.AddNewTask,
-  (task: TaskItem) => ({
+  (task: TaskItemType) => ({
     payload: task,
   })
 );
 
 export const updateTasks = createAction(
   ActionType.UpdateTasks,
-  (tasks: TaskItem[]) => ({
+  (tasks: TaskItemType[]) => ({
     payload: tasks,
   })
 );
@@ -22,6 +22,20 @@ export const changeStatus = createAction(
     payload: id,
   })
 );
+
+export const editTaskText = createAction(
+  ActionType.EditTaskText,
+  (id: string, text: string) => ({
+    payload: {
+      id,
+      text,
+    },
+  })
+);
+
+export const deleteTask = createAction(ActionType.DeleteTask, (id: string) => ({
+  payload: id,
+}));
 
 export const clearCompletedTasks = createAction(ActionType.ClearCompletedTasks);
 

@@ -25,6 +25,11 @@ body {
   margin: 0;
 }
 
+.container {
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.2);
+}
+
 .add-task-field_container {
   min-width: 550px;
   background-color: white;
@@ -43,7 +48,7 @@ body {
   margin: 0;
   font-size: 30px;
   color: black;
-  border: none
+  border: none;
 }
 
 .add-field_checkbox--checked {
@@ -61,6 +66,21 @@ body {
   font-style: italic;
 }
 
+.edit-field {
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  margin: 0;
+  font-size: 30px;
+  color: black;
+  border: none;
+  box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.3);
+}
+
+.edit-field:focus {
+  outline: none;
+}
+
 .task-list {
   margin: 0;
   padding: 0;
@@ -72,26 +92,26 @@ body {
   padding: 0;
   margin: 0;
   background-color: white;
-  border: 0.1px solid rgb(211,211,211);
+  border-top: 0.01px solid rgb(211,211,211);
   width: 549px;
   min-height: 50px;
   list-style-type: none;
   text-align: left;
   font-size: 24px;
-}
-
-.item_label {
   display: grid;
   grid-template-columns: 1fr 10fr;
   align-items: center;
+}
+
+.task-item_label {
   margin-top: 10px ;
 }
 
-.item_checkbox {
+.task-item_checkbox {
   display: none;
 }
 
-.item_box {
+.task-item_box {
   display: inline-block;
   width:  25px;
   height: 25px;
@@ -101,7 +121,7 @@ body {
   position: relative;
 }
 
-.item_box::before {
+.task-item_box::before {
   content: '✓';
   color: #08e8de;
   position: absolute;
@@ -111,11 +131,13 @@ body {
   opacity: 0;
 }
 
-.item_checkbox:checked + .item_box::before {
+.task-item_checkbox:checked + .task-item_box::before {
   opacity: 1;
 }
 
-.item_text {
+.task-item_text {
+  display: flex;
+  justify-content: space-between;
   margin: 0;
   color:  black;
   padding-left: 7px;
@@ -123,9 +145,33 @@ body {
 }
 
 
-.item_checkbox:checked ~ .item_text {
-  color: gray;
+.task-item_text--through {
+  color: rgb(183, 182, 182);
   text-decoration: line-through;
+}
+
+.task-item_delete {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+}
+
+.task-item_delete-button {
+  background-color: transparent;
+  color: rgba(175, 47, 47, 0.45);
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  outline: 0;
+  opacity: 0;
+}
+
+.task-item_delete-button:hover {
+  color: rgba(175, 47, 47, 1);;
+}
+
+.task-item:hover .task-item_delete-button {
+opacity: 1;
 }
 
 .controls-panel {
@@ -135,9 +181,19 @@ body {
   justify-content: space-between;
   min-width: 500px;
   width: 550px;
-  min-height: 50px ;
-  border: 0.1px solid rgb(211,211,211);
+  min-height: 30px ;
+  border-top: 0.1px solid rgb(211,211,211);
   font-size: 10px;
+}
+
+.paper-shadow {
+  background: #fff;
+  box-shadow:
+    0 1px 1px rgba(0,0,0,0.15),
+    0 10px 0 -5px #eee,
+    0 10px 1px -4px rgba(0,0,0,0.15),
+    0 20px 0 -10px #eee,
+    0 20px 1px -9px rgba(0,0,0,0.15);
 }
 
 .buttons-container {

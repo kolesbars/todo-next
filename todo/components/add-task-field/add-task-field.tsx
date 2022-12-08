@@ -27,7 +27,7 @@ const AddTaskField = (): JSX.Element => {
     e.preventDefault();
     dispatch(
       addNewTask({
-        task: fieldValue,
+        text: fieldValue,
         isChecked: false,
         id: nanoid(),
       })

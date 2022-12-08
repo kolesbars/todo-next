@@ -4,4 +4,6 @@ export enum ActionType {
   ChangeStatus = 'task/changeStatus',
   ClearCompletedTasks = '/tasks/clearCompletedTasks',
   СhangeAllStatuses = '/tasks/changeAllStatuses',
+  DeleteTask = 'task/deleteTask',
+  EditTaskText = 'task/editTaskText',
 }

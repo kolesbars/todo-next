@@ -14,9 +14,11 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
   return (
     <div className="main">
       <h1 className="title">todos</h1>
-      <AddTaskField />
-      {children}
-      {tasks.length !== 0 && <ControlPanel />}
+      <div className="container">
+        <AddTaskField />
+        {children}
+        {tasks.length !== 0 && <ControlPanel />}
+      </div>
     </div>
   );
 };

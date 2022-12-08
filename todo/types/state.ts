@@ -1,8 +1,8 @@
 import { store } from '../store/store';
-import { TaskItem } from './common';
+import { TaskItemType } from './common';
 
 export type TaskList = {
-  tasks: TaskItem[];
+  tasks: TaskItemType[];
 };
 
 export type AppDispatch = typeof store.dispatch;

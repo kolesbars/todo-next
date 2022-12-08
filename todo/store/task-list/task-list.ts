@@ -6,6 +6,8 @@ import {
   clearCompletedTasks,
   updateTasks,
   changeAllStatuses,
+  deleteTask,
+  editTaskText,
 } from '../action';
 
 const initialState: TaskList = {
@@ -34,6 +36,15 @@ const taskList = createReducer(initialState, (builder) => {
       const item = state.tasks.find((task) => task.id === action.payload);
       if (item) {
         item.isChecked = !item.isChecked;
+      }
+    })
+    .addCase(deleteTask, (state, action) => {
+      state.tasks = state.tasks.filter((task) => task.id !== action.payload);
+    })
+    .addCase(editTaskText, (state, action) => {
+      const item = state.tasks.find((task) => task.id === action.payload.id);
+      if (item) {
+        item.text = action.payload.text;
       }
     });
 });

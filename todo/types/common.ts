@@ -1,5 +1,5 @@
-export type TaskItem = {
-  task: string;
+export type TaskItemType = {
+  text: string;
   isChecked: boolean;
   id: string;
 };

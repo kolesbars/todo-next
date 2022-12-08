@@ -26,7 +26,7 @@ const ControlPanel = (): JSX.Element => {
   ).length;
 
   return (
-    <div className="controls-panel">
+    <div className="controls-panel paper-shadow">
       <p className="count">{`${leftItemsCount} items left`}</p>
       <ul className="buttons-container">
         {navArr.map((el) => {
