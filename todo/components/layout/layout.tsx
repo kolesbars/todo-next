@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
 import { getTasks } from '../../store/task-list/selectors';
 import { useAppSelector } from '../../hooks/hooks';
+import { EMPTY_ARRAY_LENGTH } from '../../const';
 import AddTaskField from '../add-task-field/add-task-field';
 import ControlPanel from '../control-panel/control-panel';
 
@@ -17,7 +18,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <div className="container">
         <AddTaskField />
         {children}
-        {tasks.length !== 0 && <ControlPanel />}
+        {tasks.length !== EMPTY_ARRAY_LENGTH && <ControlPanel />}
       </div>
     </div>
   );

@@ -32,11 +32,6 @@ const TaskItem = ({ task, onHandleChange }: TaskItemProps): JSX.Element => {
     setIsEditing(false);
   };
 
-  const hadleBlurInput = () => {
-    dispatch(editTaskText(task.id, text));
-    setIsEditing(false);
-  };
-
   return (
     <li className="task-item" key={task.id} data-testid="task-list-item">
       <label className="task-item_label">

@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { getTasks, getSelectedTasks } from '../../store/task-list/selectors';
 import { updateTasks } from '../../store/action';
+import { EMPTY_ARRAY_LENGTH } from '../../const';
 import TaskItem from '../task-item/task-item';
 
 type TasksListProps = {
@@ -42,7 +43,7 @@ function TaskList({ isCompleted }: TasksListProps): JSX.Element {
   }, [router, allTasks]);
 
   useEffect(() => {
-    if (allTasks.length === 0) {
+    if (allTasks.length === EMPTY_ARRAY_LENGTH) {
       localStorage.clear();
     } else {
       localStorage.setItem('tasks', JSON.stringify(allTasks));

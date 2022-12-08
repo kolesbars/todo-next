@@ -1,10 +1,11 @@
 import { nanoid } from 'nanoid';
-import Image from 'next/image';
+import { EMPTY_ARRAY_LENGTH } from '../../const';
 import { useAppDispatch } from '../../hooks/hooks';
 import { addNewTask, changeAllStatuses } from '../../store/action';
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { getSelectedTasks, getTasks } from '../../store/task-list/selectors';
+import Image from 'next/image';
 
 const AddTaskField = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -18,8 +19,6 @@ const AddTaskField = (): JSX.Element => {
   };
 
   const handleArrowClick = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log('click');
-
     dispatch(changeAllStatuses(e.currentTarget.checked));
   };
 
@@ -45,7 +44,7 @@ const AddTaskField = (): JSX.Element => {
         checked={allTasks.length === checkedTasks.length}
       ></input>
       <label htmlFor="checked-all" className="add-task-field_label">
-        {allTasks.length !== 0 && (
+        {allTasks.length !== EMPTY_ARRAY_LENGTH && (
           <Image
             className=".add-field_checkbox--checked"
             src={

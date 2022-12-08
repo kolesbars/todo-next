@@ -1,3 +1,4 @@
+import { EMPTY_ARRAY_LENGTH } from '../../const';
 import { clearCompletedTasks } from '../../store/action';
 import { getSelectedTasks } from '../../store/task-list/selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -11,10 +12,10 @@ const ClearButton = (): JSX.Element => {
   };
 
   return (
-    <div className="buttonWrapper">
+    <div className="button-wrapper">
       <button
         className="clear-button"
-        disabled={tasks.length === 0}
+        disabled={tasks.length === EMPTY_ARRAY_LENGTH}
         type="button"
         onClick={handleClearButtonClick}
       >
