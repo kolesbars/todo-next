@@ -1,7 +1,7 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
 import { useState } from 'react';
-import { deleteTask, editTaskText } from '../../store/action';
+import { deleteTask, editTaskText, addNewTag } from '../../store/action';
 import { TaskItemType } from '../../types/common';
 
 type TaskItemProps = {
@@ -14,6 +14,14 @@ const TaskItem = ({ task, onHandleChange }: TaskItemProps): JSX.Element => {
 
   const [text, setText] = useState<string>(task.text);
   const [isEditing, setIsEditing] = useState(false);
+
+  const addTags = (value: string) => {
+    value.split(' ').forEach((word) => {
+      if (word.startsWith('#')) {
+        dispatch(addNewTag(word.substring(1)))
+      }
+    })
+  }
 
   const handleDeleteClick = () => {
     dispatch(deleteTask(task.id));
@@ -28,7 +36,15 @@ const TaskItem = ({ task, onHandleChange }: TaskItemProps): JSX.Element => {
   };
 
   const handleEditText = () => {
-    dispatch(editTaskText(task.id, text));
+    addTags(text);
+    const value = text.split(' ').map((word) => {
+      if (word.startsWith('#')) {
+        return word.substring(1)
+      }
+      return word
+    }).join(' ');
+
+    dispatch(editTaskText(task.id, value));
     setIsEditing(false);
   };
 
@@ -47,20 +63,20 @@ const TaskItem = ({ task, onHandleChange }: TaskItemProps): JSX.Element => {
       </label>
       {isEditing ? (
         <form onSubmit={handleEditText} data-testid="add-form">
-          <input
-            className="edit-field"
-            type="text"
-            value={text}
-            onChange={handleChangeValue}
-            onBlur={handleEditText}
-            data-testid="add-field"
-          />
+          <label>
+            <input
+              className="edit-field"
+              value={text}
+              onChange={handleChangeValue}
+              onBlur={handleEditText}
+              data-testid="add-field"
+            />
+          </label>
         </form>
       ) : (
         <p
-          className={`task-item_text ${
-            task.isChecked && 'task-item_text--through'
-          }`}
+          className={`task-item_text ${task.isChecked && 'task-item_text--through'
+            }`}
           onDoubleClick={handleDoubleClickText}
         >
           {task.text}

@@ -1,5 +1,5 @@
-import { TaskList } from '../../types/state';
-import { createReducer } from '@reduxjs/toolkit';
+import { TaskList } from "../../types/state";
+import { createReducer } from "@reduxjs/toolkit";
 import {
   addNewTask,
   changeStatus,
@@ -8,10 +8,15 @@ import {
   changeAllStatuses,
   deleteTask,
   editTaskText,
-} from '../action';
+  addNewTag,
+  changeCurrentTag,
+  deleteTag,
+} from "../action";
 
 const initialState: TaskList = {
   tasks: [],
+  tags: [],
+  currentTag: "",
 };
 
 const taskList = createReducer(initialState, (builder) => {
@@ -46,6 +51,17 @@ const taskList = createReducer(initialState, (builder) => {
       if (item) {
         item.text = action.payload.text;
       }
+    })
+    .addCase(addNewTag, (state, action) => {
+      if (!state.tags.includes(action.payload)) {
+        state.tags = [...state.tags, action.payload];
+      }
+    })
+    .addCase(changeCurrentTag, (state, action) => {
+      state.currentTag = action.payload;
+    })
+    .addCase(deleteTag, (state, action) => {
+      state.tags = state.tags.filter((tag) => tag !== action.payload);
     });
 });
 

@@ -1,6 +1,6 @@
-import { createAction } from '@reduxjs/toolkit';
-import { TaskItemType } from '../types/common';
-import { ActionType } from '../types/action';
+import { createAction } from "@reduxjs/toolkit";
+import { TaskItemType } from "../types/common";
+import { ActionType } from "../types/action";
 
 export const addNewTask = createAction(
   ActionType.AddNewTask,
@@ -43,5 +43,20 @@ export const changeAllStatuses = createAction(
   ActionType.СhangeAllStatuses,
   (status: boolean) => ({
     payload: status,
+  })
+);
+
+export const addNewTag = createAction(ActionType.AddNewTag, (tag: string) => ({
+  payload: tag,
+}));
+
+export const deleteTag = createAction(ActionType.DeleteTag, (tag: string) => ({
+  payload: tag,
+}));
+
+export const changeCurrentTag = createAction(
+  ActionType.ChangeCurrentTag,
+  (tag: string) => ({
+    payload: tag,
   })
 );

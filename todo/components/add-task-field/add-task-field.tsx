@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid';
 import { EMPTY_ARRAY_LENGTH } from '../../const';
 import { useAppDispatch } from '../../hooks/hooks';
-import { addNewTask, changeAllStatuses } from '../../store/action';
+import { addNewTask, changeAllStatuses, addNewTag } from '../../store/action';
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useSelector } from 'react-redux';
 import { getSelectedTasks, getTasks } from '../../store/task-list/selectors';
@@ -22,15 +22,33 @@ const AddTaskField = (): JSX.Element => {
     dispatch(changeAllStatuses(e.currentTarget.checked));
   };
 
+  const addTags = (value: string) => {
+    value.split(' ').forEach((word) => {
+      if (word.startsWith('#')) {
+        dispatch(addNewTag(word.substring(1)))
+      }
+    })
+  }
+
   const handleAddTask = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    addTags(fieldValue);
+
+    const value = fieldValue.split(' ').map((word) => {
+      if (word.startsWith('#')) {
+        return word.substring(1)
+      }
+      return word
+    }).join(' ');
+
     dispatch(
       addNewTask({
-        text: fieldValue,
+        text: value,
         isChecked: false,
         id: nanoid(),
       })
     );
+
     setFieldValue('');
   };
 

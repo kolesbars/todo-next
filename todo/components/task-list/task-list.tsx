@@ -4,7 +4,7 @@ import { TaskItemType } from '../../types/common';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { getTasks, getSelectedTasks } from '../../store/task-list/selectors';
+import { getTasks, getSelectedTasks, getCurrentTag } from '../../store/task-list/selectors';
 import { updateTasks } from '../../store/action';
 import { EMPTY_ARRAY_LENGTH } from '../../const';
 import TaskItem from '../task-item/task-item';
@@ -20,12 +20,18 @@ function TaskList({ isCompleted }: TasksListProps): JSX.Element {
 
   const allTasks = useAppSelector(getTasks);
   const selectedTasks = useAppSelector(getSelectedTasks(isCompleted));
+  const currentTag = useAppSelector(getCurrentTag);
 
   const [tasks, setTasks] = useState<TaskItemType[]>(allTasks);
+  const [filteredTasks, setFilteredTasks] = useState<TaskItemType[]>([]);
 
   const handleChangeStatus = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(changeStatus(e.target.id));
   };
+
+  useEffect(() => {
+    setFilteredTasks(tasks.filter((task) => task.text.includes(currentTag)))
+  }, [currentTag, tasks])
 
   useEffect(() => {
     const storegedItems = localStorage.getItem('tasks');
@@ -52,7 +58,7 @@ function TaskList({ isCompleted }: TasksListProps): JSX.Element {
 
   return (
     <ul className="task-list" data-testid="task-list">
-      {tasks.map((task) => (
+      {filteredTasks.map((task) => (
         <TaskItem
           task={task}
           key={task.id}

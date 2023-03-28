@@ -4,6 +4,7 @@ import { useAppSelector } from '../../hooks/hooks';
 import { EMPTY_ARRAY_LENGTH } from '../../const';
 import AddTaskField from '../add-task-field/add-task-field';
 import ControlPanel from '../control-panel/control-panel';
+import TagsPanel from '../tags-panel/tags-panel';
 
 type LayoutProps = {
   children: ReactNode;
@@ -18,6 +19,7 @@ const Layout = ({ children }: LayoutProps): JSX.Element => {
       <div className="container">
         <AddTaskField />
         {children}
+        <TagsPanel />
         {tasks.length !== EMPTY_ARRAY_LENGTH && <ControlPanel />}
       </div>
     </div>
